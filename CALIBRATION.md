@@ -63,7 +63,9 @@ iter17, cluster bootstrap over base seeds (B=10,000). **Stopped early at n=1,000
 **δ̂ = +0.317 rank** for the two-step (+1 vs −1) pip contrast (positive ⇒ pip helps).
 - 95% CI **[0.245, 0.389]**, SE 0.0367, N = 1,000 eligible pairs.
 - Relative precision 0.116 (≤ 0.15 target met).
-- **SD of within-pair rank differences = 1.162** (reference for the diversity pilot).
+- **SD of within-pair rank differences = 1.162** (measured on the pip-swap calibration
+  games; used as a provisional reference for the diversity pilot's power calc until the
+  pilot measures the diversity-swap SD directly).
 - Batch trace: n=500 → δ̂ +0.334 (relprec 0.157); n=1000 → δ̂ +0.317 (relprec 0.116, stop).
 
 **Rank-distribution shift (P+ minus P−, bootstrap 95% CI) — all exclude 0:**
