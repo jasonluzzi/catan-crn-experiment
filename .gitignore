@@ -1,0 +1,19 @@
+__pycache__/
+*.pyc
+.DS_Store
+.ipynb_checkpoints/
+
+# Model checkpoint weights are not published; bring your own (see README /
+# crn/agent.py). The checkpoints/ directory and its README are kept; only the
+# weight files are ignored.
+*.pt
+*.pth
+*.ckpt
+
+# Logs and scratch.
+*.log
+*.tmp
+scratch/
+
+# Small calibration outputs under results/ are committed deliberately per run
+# (see CALIBRATION.md). Ignore only bulk/raw per-game dumps if they appear.

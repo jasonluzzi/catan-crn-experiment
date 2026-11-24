@@ -1,0 +1,19 @@
+# Runtime dependencies.
+#
+# The versions below are those present in the environment where the checkpoint-free
+# tests and the committed calibration were last run; they are a known-working
+# reference, not a hard requirement.
+#
+# IMPORTANT: torch / stable-baselines3 / sb3-contrib / gymnasium must match the
+# environment your agent checkpoints were trained and pickled in, or the .pt files may
+# fail to load. If you bring your own checkpoints, pin these to that environment.
+numpy==2.0.2
+torch==2.8.0
+gymnasium==1.1.1
+stable-baselines3==2.7.1
+sb3-contrib==2.7.1
+pandas==2.3.3
+pyarrow==21.0.0
+
+# Tests run as plain scripts (python tests/test_*.py); pytest is optional.
+# pytest

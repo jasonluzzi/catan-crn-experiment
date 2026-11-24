@@ -1,0 +1,4 @@
+Vendored from: a private training repo (engine subtree)
+Source git hash: ede3135b35fefc23a443ee752c9515bfb9f69b0a
+Vendored on: 2026-11-03
+DO NOT edit for behavior changes except the documented RNG refactor.
