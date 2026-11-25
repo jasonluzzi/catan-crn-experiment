@@ -95,9 +95,13 @@ the treatment. This cannot be fully removed. How we handle it, honestly:
   ore/grain show up disproportionately on one side, it will be visible.
 - **Dose-zero placebo arm** (`run_placebo`): two distinct equal-pip neutral swaps
   that change the focal's resources but leave div_count unchanged. Its A-B
-  difference has zero diversity signal, so it estimates the "swap a focal tile at
-  all" (pure composition) effect. If that is large relative to the Arm-A effect,
-  much of A-B is composition, not diversity. This is the closest thing to a placebo.
+  difference has zero distinct-COUNT signal (it is dose-zero only for the primary,
+  count-based diversity definition), so it estimates the "swap a focal tile at all"
+  (pure composition) effect. Note it is NOT entropy-neutral: swapping which resource
+  the focal touches shifts its pip-weighted production entropy (`delta_div_entropy` is
+  logged), which is why the two NEU boards supply identifying variation for the entropy
+  analysis (H1d). If the count-placebo A-B difference is large relative to the Arm-A
+  effect, much of A-B is composition, not diversity. This is the closest thing to a placebo.
 
 ## Honest-framing corrections (do NOT overclaim in the write-up)
 - NOT "the sole systematic difference is the focal's diversity." The boards differ
