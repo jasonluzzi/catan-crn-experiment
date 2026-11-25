@@ -13,7 +13,7 @@ Variable importance numbers from observational data often can't separate a real 
 - An attention-based policy network: per-tile and per-corner multi-head self-attention plus a graph-attention network over the board graph, with hierarchical action heads (`engine/src/models/`).
 - Trained with behavioral cloning, then fine-tuned with PPO through self-play (`engine/src/training/`). The training code is vendored here; the trained weights are **not** shipped (see *Running it*).
 - Several trained agents (a BC-to-PPO ladder: `v4`, `v5`, `iter17`), with the top agent chosen through deterministic-policy evaluation against fixed baselines. `iter17` (PPO) is the primary agent. (The per-agent win-rates noted in `crn/agent.py` are reported from the original training runs; the evaluation output and weights are not shipped here, so they are not reproducible from this repo alone.)
-- Simulation runs in parallel on CPU across worker processes. The policies are small, so self-play stays on the CPU rather than the GPU.
+- Simulation runs in parallel on CPU across worker processes. Self-play stays on the CPU because moving game state between CPU and GPU added more overhead than the GPU compute saved — the CPU↔GPU round trip actually slowed throughput down.
 
 ## The experimental design
 
@@ -34,7 +34,7 @@ Variable importance numbers from observational data often can't separate a real 
 | **NEU1** | swaps a duplicated focal resource for another already in the focal's set | **unchanged** |
 | **NEU2** | a second, distinct neutral swap of the same kind | **unchanged** |
 
-The primary causal contrast is **INC vs DEC** (a two-step, +2 distinct-count change), with placement recorded on the reference board and replayed identically on both. The **NEU1 vs NEU2** contrast is a dose-zero placebo: it moves composition but carries no diversity signal, so it estimates the "swap a focal tile at all" effect.
+The primary causal contrast is **INC vs DEC** (a two-step, +2 distinct-count change), with placement recorded on the reference board and replayed identically on both. The **NEU1 vs NEU2** contrast is the placebo: it carries *no distinct-resource-count signal* (the primary treatment definition), so against that definition it is dose-zero and estimates the "swap a focal tile at all" composition effect. Note it is **not** diversity-neutral under the secondary, pip-weighted *entropy* definition — swapping which resource the focal touches shifts its production entropy — which is exactly why the two NEU boards (same count, different entropy) also supply identifying variation for the entropy analysis.
 
 **Conditional question.** A swap changes which resources a player receives, so diversity never moves on its own. Asking whether diversity matters means asking whether it still matters given which resources were traded, which is a question of conditional independence.
 
